@@ -50,7 +50,7 @@ section { padding: clamp(80px, 12vw, 150px) 0; position: relative; }
 
 /* ---------- Hero ---------- */
 .hero { min-height: 100svh; display: flex; align-items: flex-end; padding: clamp(130px, 13vw, 180px) 0 clamp(48px, 8vw, 90px); overflow: hidden; }
-.hero-bg { position: absolute; inset: -6%; background: url("img/p40.jpg") center 60% / cover no-repeat; transform-origin: 60% 60%; }
+.hero-bg { position: absolute; inset: -6%; background: url("img/hero-fleet.jpg") center 50% / cover no-repeat; transform-origin: 60% 60%; }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background:
   radial-gradient(120% 80% at 70% 30%, transparent 0%, rgba(4,7,12,.55) 55%, var(--bg) 100%),
   linear-gradient(180deg, rgba(4,7,12,.65) 0%, rgba(4,7,12,.15) 35%, rgba(4,7,12,.92) 85%, var(--bg) 100%); }
