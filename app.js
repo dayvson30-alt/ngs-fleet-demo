@@ -1,4 +1,4 @@
-// NGS Car Care — fleet site. Edite CONFIG para trocar telefone e preços.
+// NGS Auto Care — fleet site. Edite CONFIG para trocar telefone e preços.
 const CONFIG = {
   whatsapp: "13213177254",
   // Preços PROVISÓRIOS por lavagem/veículo — confirmar com a NGS.
