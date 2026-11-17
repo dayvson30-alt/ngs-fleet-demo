@@ -54,10 +54,16 @@ section { padding: clamp(80px, 12vw, 150px) 0; position: relative; }
 
 /* ---------- Hero ---------- */
 .hero { min-height: 100svh; display: flex; align-items: flex-end; padding: clamp(130px, 13vw, 180px) 0 clamp(48px, 8vw, 90px); overflow: hidden; }
-.hero-bg { position: absolute; inset: -6%; background: url("img/hero-fleet.jpg") center 50% / cover no-repeat; transform-origin: 60% 60%; }
+.hero-bg { position: absolute; inset: 0 0 auto 0; height: 100svh; background: url("img/hero-poster.jpg") center 50% / cover no-repeat; transform-origin: 60% 60%; }
+.hero-bg canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+@media (max-width: 720px) { .hero-bg { background-position: 70% 50%; } }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background:
-  radial-gradient(120% 80% at 70% 30%, transparent 0%, rgba(4,7,12,.55) 55%, var(--bg) 100%),
-  linear-gradient(180deg, rgba(4,7,12,.65) 0%, rgba(4,7,12,.15) 35%, rgba(4,7,12,.92) 85%, var(--bg) 100%); }
+  linear-gradient(90deg, rgba(4,7,12,.62) 0%, rgba(4,7,12,.38) 38%, rgba(4,7,12,0) 68%),
+  linear-gradient(180deg, rgba(4,7,12,.5) 0%, rgba(4,7,12,0) 16%, rgba(4,7,12,0) 78%, var(--bg) 100%); }
+.hero-sub, .hero .kicker { text-shadow: 0 1px 14px rgba(4,7,12,.8); }
+.hero h1 { filter: drop-shadow(0 3px 20px rgba(4,7,12,.5)); }
+@media (max-width: 720px) { .hero::before { background:
+  linear-gradient(180deg, rgba(4,7,12,.5) 0%, rgba(4,7,12,.3) 14%, rgba(4,7,12,.42) 34%, rgba(4,7,12,.62) 60%, var(--bg) 100%); } }
 #bubbles { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 .hero .wrap { position: relative; z-index: 3; }
 .hero h1 { font-family: var(--display); font-size: clamp(46px, min(10.5vw, 13svh), 150px); line-height: .92; letter-spacing: -0.04em; margin: 18px 0 26px; }
@@ -65,7 +71,7 @@ section { padding: clamp(80px, 12vw, 150px) 0; position: relative; }
 .hero h1 .line span { display: inline-block; }
 .hero h1 .line:nth-child(2) span { background: linear-gradient(100deg, #fff 10%, var(--aqua) 45%, var(--brand) 80%); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 200% 100%; animation: flow 6s linear infinite; }
 @keyframes flow { to { background-position: -200% 0; } }
-.hero-sub { max-width: 560px; color: #c5d4e6; font-size: clamp(16px, 1.6vw, 19px); }
+.hero-sub { max-width: 560px; color: #e6eef8; font-size: clamp(16px, 1.6vw, 19px); }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: clamp(40px, 7vw, 80px); background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
 .stat { background: rgba(6, 11, 18, 0.82); backdrop-filter: blur(10px); padding: 22px 24px; }

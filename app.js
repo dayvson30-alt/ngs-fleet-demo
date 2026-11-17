@@ -29,6 +29,68 @@ function safeStorage(action, key, value) {
   }
 }
 
+/* ---------- Hero: sequência de quadros controlada pela rolagem ---------- */
+const MOBILE_MAX_WIDTH = 720;
+const IS_MOBILE = window.innerWidth <= MOBILE_MAX_WIDTH;
+// Celular usa um conjunto menor e mais leve de quadros.
+const HERO_SEQ = IS_MOBILE
+  ? { dir: "seq-m", count: 40, focusX: 0.7, pinLength: "+=120%" }
+  : { dir: "seq", count: 60, focusX: 0.7, pinLength: "+=120%" };
+
+function heroFramePath(index) {
+  return `${HERO_SEQ.dir}/f_${String(index + 1).padStart(3, "0")}.webp`;
+}
+
+function initHeroSequence() {
+  const canvas = $("#heroSeq");
+  if (!canvas) return null;
+  const ctx = canvas.getContext("2d");
+  const frames = new Array(HERO_SEQ.count).fill(null);
+  let current = 0;
+
+  function nearestLoaded(index) {
+    for (let i = index; i >= 0; i -= 1) { if (frames[i]) return frames[i]; }
+    for (let i = index + 1; i < frames.length; i += 1) { if (frames[i]) return frames[i]; }
+    return null;
+  }
+
+  function draw() {
+    const img = nearestLoaded(current);
+    if (!img) return;
+    const { width: cw, height: ch } = canvas;
+    const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+    const w = img.naturalWidth * scale;
+    const h = img.naturalHeight * scale;
+    ctx.drawImage(img, (cw - w) * HERO_SEQ.focusX, (ch - h) / 2, w, h);
+  }
+
+  function resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(canvas.clientWidth * ratio);
+    canvas.height = Math.round(canvas.clientHeight * ratio);
+    draw();
+  }
+
+  frames.forEach((_, index) => {
+    const img = new Image();
+    img.decoding = "async";
+    img.onload = () => { frames[index] = img; if (index === 0 || index === current) draw(); };
+    img.src = heroFramePath(index);
+  });
+
+  window.addEventListener("resize", resize);
+  resize();
+
+  return {
+    setProgress(progress) {
+      const next = Math.round(Math.min(Math.max(progress, 0), 1) * (HERO_SEQ.count - 1));
+      if (next === current) return;
+      current = next;
+      draw();
+    }
+  };
+}
+
 function smsLink(message) {
   return `sms:+${CONFIG.whatsapp}?&body=${encodeURIComponent(message)}`;
 }
@@ -244,7 +306,10 @@ function startMotion() {
     .from(".hero h1 .line span", { yPercent: 110, duration: 1.3, stagger: 0.12 }, 0.2)
     .from(".hero-in", { opacity: 0, y: 30, duration: 1, stagger: 0.1 }, 0.6);
 
-  gsap.to("#heroBg", { yPercent: 14, scale: 1.08, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+  const heroSeq = initHeroSequence();
+  if (heroSeq) {
+    ScrollTrigger.create({ trigger: ".hero", start: "top top", end: HERO_SEQ.pinLength, pin: true, onUpdate: (self) => heroSeq.setProgress(self.progress) });
+  }
   gsap.to(".hero .wrap", { opacity: 0, y: -60, ease: "none", scrollTrigger: { trigger: ".hero", start: "40% top", end: "bottom top", scrub: true } });
 
   $$(".count").forEach((el) => {
