@@ -215,7 +215,13 @@ footer a:hover { color: var(--aqua); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .reveal { opacity: 1; transform: none; }
+  /* A faixa de texto é lenta e contínua: mantida mesmo com "Reduzir movimento". */
+  .marquee-track { animation: marquee 28s linear infinite !important; }
+}
+/* Galeria da frota no celular: desliza com o dedo */
+@media (max-width: 760px) {
+  .fleet-track { overflow-x: auto; width: 100%; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .fleet-item { scroll-snap-align: start; }
 }
 
 /* Celular: caminhão limpo em cima, texto embaixo (o efeito de rolagem fica visível) */

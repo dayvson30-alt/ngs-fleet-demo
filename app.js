@@ -221,11 +221,6 @@ function startMotion() {
   }
   gsap.registerPlugin(ScrollTrigger);
 
-  if (REDUCED) {
-    gsap.set(".reveal", { opacity: 1, y: 0 });
-    $$(".count").forEach((el) => { el.textContent = el.dataset.to; });
-    return;
-  }
 
   if (window.Lenis) {
     const lenis = new Lenis({ lerp: 0.1 });
@@ -265,19 +260,13 @@ function startMotion() {
   // Steps progress line
   gsap.to("#stepsLine", { scaleX: 1, ease: "none", scrollTrigger: { trigger: "#steps", start: "top 75%", end: "top 30%", scrub: true } });
 
-  // Fleet horizontal scroll (desktop) / simple reveal (mobile)
+  // Fleet horizontal scroll (desktop). No celular o deslize é CSS (styles.css).
   const mm = gsap.matchMedia();
   mm.add("(min-width: 761px)", () => {
     const track = $("#fleetTrack");
     const dist = () => track.scrollWidth - innerWidth + 32;
     gsap.to(track, { x: () => -dist(), ease: "none", scrollTrigger: { trigger: "#fleet", start: "top top", end: () => `+=${dist()}`, pin: ".fleet-pin", scrub: 1, invalidateOnRefresh: true } });
     gsap.to(".fleet-item img", { scale: 1, ease: "none", scrollTrigger: { trigger: "#fleet", start: "top top", end: () => `+=${dist()}`, scrub: true } });
-  });
-  mm.add("(max-width: 760px)", () => {
-    const track = $("#fleetTrack");
-    track.style.overflowX = "auto"; track.style.width = "100%"; track.style.scrollSnapType = "x mandatory";
-    $$(".fleet-item").forEach((f) => { f.style.scrollSnapAlign = "start"; });
-    return () => { track.removeAttribute("style"); };
   });
 }
 
