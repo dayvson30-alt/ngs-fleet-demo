@@ -218,3 +218,10 @@ footer a:hover { color: var(--aqua); }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Celular: caminhão limpo em cima, texto embaixo (o efeito de rolagem fica visível) */
+@media (max-width: 720px) {
+  .hero { align-items: flex-start; padding-top: calc(44svh + 20px); }
+  .hero-bg { height: 44svh; background-position: 70% 50%; }
+  .hero::before { background: linear-gradient(180deg, rgba(4,7,12,.5) 0, rgba(4,7,12,0) 11svh, rgba(4,7,12,0) 33svh, var(--bg) 44svh); }
+}

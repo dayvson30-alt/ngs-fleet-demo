@@ -34,7 +34,7 @@ const MOBILE_MAX_WIDTH = 720;
 const IS_MOBILE = window.innerWidth <= MOBILE_MAX_WIDTH;
 // Celular usa um conjunto menor e mais leve de quadros.
 const HERO_SEQ = IS_MOBILE
-  ? { dir: "seq-m", count: 40, focusX: 0.7, pinLength: "+=120%" }
+  ? { dir: "seq-m", count: 40, focusX: 0.5, pinLength: "+=100%" }
   : { dir: "seq", count: 60, focusX: 0.7, pinLength: "+=120%" };
 
 function heroFramePath(index) {
