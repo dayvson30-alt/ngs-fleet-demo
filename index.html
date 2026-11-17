@@ -12,12 +12,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261116">
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></symbol>
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></symbol>
+  <symbol id="sms" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M12 3C6.5 3 2 6.8 2 11.5c0 2.6 1.4 4.9 3.6 6.5L4.8 21.5l4-2.1c1 .3 2.1.4 3.2.4 5.5 0 10-3.8 10-8.5S17.5 3 12 3zM7.5 10a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm4.5 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm4.5 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></symbol>
 </svg>
 
 <header class="nav" id="nav">
@@ -51,7 +52,8 @@
       <p class="hero-sub hero-in" data-i18n="hero_sub"></p>
       <div class="hero-ctas hero-in">
         <a href="#calc" class="btn btn-primary magnetic" data-i18n="hero_cta"></a>
-        <a href="#" class="btn btn-ghost js-wa"><svg width="18" height="18"><use href="#wa"/></svg><span data-i18n="hero_cta2"></span></a>
+        <a href="#" class="btn btn-wa js-wa"><svg width="18" height="18"><use href="#wa"/></svg><span data-i18n="hero_cta2"></span></a>
+        <a href="#" class="btn btn-sms js-sms"><svg width="18" height="18"><use href="#sms"/></svg><span data-i18n="hero_cta3"></span></a>
       </div>
       <div class="stats hero-in">
         <div class="stat"><b><span class="count" data-to="25">0</span>+</b><span data-i18n="stat_1"></span></div>
@@ -201,8 +203,9 @@
         <input name="name" required data-i18n-ph="f_name" autocomplete="name">
         <input name="company" data-i18n-ph="f_company" autocomplete="organization">
         <input name="vehicles" type="number" min="1" max="999" required data-i18n-ph="f_vehicles">
-        <button class="btn btn-primary" type="submit"><svg width="18" height="18"><use href="#wa"/></svg><span data-i18n="f_send"></span></button>
+        <button class="btn btn-wa" type="submit"><svg width="18" height="18"><use href="#wa"/></svg><span data-i18n="f_send"></span></button>
       </form>
+      <p class="alt-sms reveal"><a href="#" class="btn btn-sms js-sms"><svg width="18" height="18"><use href="#sms"/></svg><span data-i18n="f_sms"></span></a></p>
     </div>
   </section>
 </main>
@@ -211,19 +214,20 @@
   <div class="wrap">
     <div><a href="#top" class="brand"><img src="img/logo.webp" width="512" height="512" alt="" loading="lazy">NGS AUTO CARE</a><p style="margin-top:10px" data-i18n="foot_area"></p></div>
     <div style="text-align:right">
-      <p><a href="tel:+13213177254">+1 321-317-7254</a> · <a href="mailto:info@ngsautocare.com">info@ngsautocare.com</a></p>
+      <p><a href="tel:+13213177254">+1 321-317-7254</a> · <a href="#" class="js-sms">SMS</a> · <a href="mailto:info@ngsautocare.com">info@ngsautocare.com</a></p>
       <p data-i18n="foot_lang"></p>
       <p style="margin-top:6px">© <span id="yr"></span> NGS Auto Care</p>
     </div>
   </div>
 </footer>
 
+<a href="#" class="sms-float js-sms" aria-label="SMS"><svg width="26" height="26"><use href="#sms"/></svg></a>
 <a href="#" class="wa-float js-wa" aria-label="WhatsApp"><svg width="30" height="30" style="color:#fff"><use href="#wa"/></svg></a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="i18n.js"></script>
-<script src="app.js"></script>
+<script src="i18n.js?v=20261116"></script>
+<script src="app.js?v=20261116"></script>
 </body>
 </html>

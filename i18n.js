@@ -5,7 +5,7 @@ window.NGS_I18N = {
     hero_kicker: "Mobile fleet washing · Orlando & Central Florida",
     hero_l1: "Your fleet.", hero_l2: "Spotless.", hero_l3: "On-site.",
     hero_sub: "We bring water, power and pro-grade products to your lot — vans, trucks and cars washed while your team sleeps. Zero downtime, one monthly invoice.",
-    hero_cta: "Calculate my fleet price", hero_cta2: "WhatsApp us",
+    hero_cta: "Calculate my fleet price", hero_cta2: "WhatsApp us", hero_cta3: "Text us (SMS)",
     stat_1: "vehicles per day, per crew", stat_2: "trips to the car wash", stat_3: "photo report per vehicle",
     ba_kicker: "Before / After", ba_title: "Drag to see the difference.",
     ba_tab1: "Cargo van interior", ba_tab2: "Work pickup", ba_before: "Before", ba_after: "After",
@@ -32,7 +32,7 @@ window.NGS_I18N = {
     calc_cta: "Lock this price on WhatsApp", calc_note: "Estimate only. Final quote after a quick look at your fleet.",
     detail_kicker: "Premium detailing", detail_title: "And when it has to shine.",
     final_title: "Ready to keep the whole fleet spotless?", final_sub: "Send your fleet size and we reply today.",
-    f_name: "Name", f_company: "Company", f_vehicles: "Vehicles", f_send: "Send on WhatsApp",
+    f_name: "Name", f_company: "Company", f_vehicles: "Vehicles", f_send: "Send on WhatsApp", f_sms: "Prefer text? Send an SMS",
     foot_area: "Orlando · Kissimmee · Davenport · Central Florida", foot_lang: "We speak English, Português & Español"
   },
   pt: {
@@ -40,7 +40,7 @@ window.NGS_I18N = {
     hero_kicker: "Lavagem mobile de frotas · Orlando e Central Florida",
     hero_l1: "Sua frota.", hero_l2: "Impecável.", hero_l3: "No seu pátio.",
     hero_sub: "Levamos água, energia e produtos profissionais até o seu pátio. Vans, picapes e carros lavados enquanto sua equipe descansa. Zero parada, uma fatura por mês.",
-    hero_cta: "Calcular preço da frota", hero_cta2: "Falar no WhatsApp",
+    hero_cta: "Calcular preço da frota", hero_cta2: "Falar no WhatsApp", hero_cta3: "Mandar SMS",
     stat_1: "veículos por dia, por equipe", stat_2: "idas ao lava-rápido", stat_3: "relatório com fotos por veículo",
     ba_kicker: "Antes / Depois", ba_title: "Arraste e veja a diferença.",
     ba_tab1: "Baú de van", ba_tab2: "Picape de trabalho", ba_before: "Antes", ba_after: "Depois",
@@ -67,7 +67,7 @@ window.NGS_I18N = {
     calc_cta: "Garantir esse preço no WhatsApp", calc_note: "Valor estimado. Orçamento final após avaliar a frota.",
     detail_kicker: "Detalhamento premium", detail_title: "E quando precisa brilhar.",
     final_title: "Pronto para manter a frota inteira impecável?", final_sub: "Mande o tamanho da frota e respondemos hoje.",
-    f_name: "Nome", f_company: "Empresa", f_vehicles: "Veículos", f_send: "Enviar no WhatsApp",
+    f_name: "Nome", f_company: "Empresa", f_vehicles: "Veículos", f_send: "Enviar no WhatsApp", f_sms: "Prefere SMS? Mande mensagem",
     foot_area: "Orlando · Kissimmee · Davenport · Central Florida", foot_lang: "Falamos English, Português e Español"
   },
   es: {
@@ -75,7 +75,7 @@ window.NGS_I18N = {
     hero_kicker: "Lavado móvil de flotas · Orlando y Central Florida",
     hero_l1: "Tu flota.", hero_l2: "Impecable.", hero_l3: "En tu patio.",
     hero_sub: "Llevamos agua, energía y productos profesionales a tu patio. Vans, pickups y autos lavados mientras tu equipo descansa. Cero tiempo muerto, una factura al mes.",
-    hero_cta: "Calcular precio de mi flota", hero_cta2: "Escríbenos por WhatsApp",
+    hero_cta: "Calcular precio de mi flota", hero_cta2: "Escríbenos por WhatsApp", hero_cta3: "Enviar SMS",
     stat_1: "vehículos por día, por equipo", stat_2: "viajes al car wash", stat_3: "reporte con fotos por vehículo",
     ba_kicker: "Antes / Después", ba_title: "Desliza y mira la diferencia.",
     ba_tab1: "Interior de van de carga", ba_tab2: "Pickup de trabajo", ba_before: "Antes", ba_after: "Después",
@@ -102,7 +102,7 @@ window.NGS_I18N = {
     calc_cta: "Asegurar este precio por WhatsApp", calc_note: "Solo un estimado. Cotización final tras revisar tu flota.",
     detail_kicker: "Detallado premium", detail_title: "Y cuando tiene que brillar.",
     final_title: "¿Listo para mantener toda tu flota impecable?", final_sub: "Envía el tamaño de tu flota y respondemos hoy.",
-    f_name: "Nombre", f_company: "Empresa", f_vehicles: "Vehículos", f_send: "Enviar por WhatsApp",
+    f_name: "Nombre", f_company: "Empresa", f_vehicles: "Vehículos", f_send: "Enviar por WhatsApp", f_sms: "¿Prefieres SMS? Escríbenos",
     foot_area: "Orlando · Kissimmee · Davenport · Central Florida", foot_lang: "Hablamos English, Português y Español"
   }
 };

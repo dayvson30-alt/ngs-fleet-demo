@@ -29,6 +29,10 @@ function safeStorage(action, key, value) {
   }
 }
 
+function smsLink(message) {
+  return `sms:+${CONFIG.whatsapp}?&body=${encodeURIComponent(message)}`;
+}
+
 function waLink(message) {
   return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
 }
@@ -41,6 +45,7 @@ function applyLang(lang) {
   $$("[data-i18n-ph]").forEach((el) => { el.placeholder = t(el.dataset.i18nPh); });
   $$(".lang button").forEach((b) => b.classList.toggle("on", b.dataset.lang === state.lang));
   $$(".js-wa").forEach((a) => { a.href = waLink(greeting()); });
+  $$(".js-sms").forEach((a) => { a.href = smsLink(greeting()); });
   safeStorage("set", "ngs-lang", state.lang);
   renderPlans();
   renderServiceSeg();
