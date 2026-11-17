@@ -12,7 +12,8 @@ const CONFIG = {
 };
 
 const I18N = window.NGS_I18N;
-const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// Decisão do dono (17/11/2026): o site anima mesmo com "Reduzir movimento" ligado no aparelho.
+const REDUCED = false;
 const BA_PAIRS = [["img/p06.jpg", "img/p19.jpg"], ["img/p29.jpg", "img/p28.jpg"]];
 
 const state = { lang: "en", vehicles: 10, service: 1, perMonth: 4 };
