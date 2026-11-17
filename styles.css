@@ -54,8 +54,7 @@ section { padding: clamp(80px, 12vw, 150px) 0; position: relative; }
 
 /* ---------- Hero ---------- */
 .hero { min-height: 100svh; display: flex; align-items: flex-end; padding: clamp(130px, 13vw, 180px) 0 clamp(48px, 8vw, 90px); overflow: hidden; }
-.hero-bg { position: absolute; inset: 0 0 auto 0; height: 100svh; background: url("img/hero-poster.jpg") center 50% / cover no-repeat; transform-origin: 60% 60%; }
-.hero-bg canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-bg { position: absolute; inset: 0 0 auto 0; height: 100svh; background: url("img/hero-truck.jpg") 70% 50% / cover no-repeat; transform-origin: 60% 60%; }
 @media (max-width: 720px) { .hero-bg { background-position: 70% 50%; } }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background:
   linear-gradient(90deg, rgba(4,7,12,.62) 0%, rgba(4,7,12,.38) 38%, rgba(4,7,12,0) 68%),
