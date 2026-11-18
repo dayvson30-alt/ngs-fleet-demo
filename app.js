@@ -1,15 +1,45 @@
 // NGS Auto Care — fleet site. Edite CONFIG para trocar telefone e preços.
 const CONFIG = {
   whatsapp: "13213177254",
-  // Preços PROVISÓRIOS por lavagem/veículo — confirmar com a NGS.
+  // Preços por lavagem/veículo. Exterior $45 e Completa $85 = enviados pela NGS em 17/11/2026; Premium $180 ainda provisório.
   services: [
-    { key: "plan1_t", desc: "plan1_d", price: 35 },
-    { key: "plan2_t", desc: "plan2_d", price: 65, popular: true },
+    { key: "plan1_t", desc: "plan1_d", price: 45 },
+    { key: "plan2_t", desc: "plan2_d", price: 85, popular: true },
     { key: "plan3_t", desc: "plan3_d", price: 180 }
   ],
   // Desconto por volume: [mínimo de veículos, %]
-  volumeDiscounts: [[50, 20], [25, 15], [10, 10], [5, 5]]
+  volumeDiscounts: [[50, 20], [25, 15], [10, 10], [5, 5]],
+  // Páginas extras: price null = "sob consulta" até a NGS passar o valor.
+  pages: {
+    personal: {
+      services: [
+        { key: "pc_p1_t", desc: "pc_p1_d", price: null },
+        { key: "pc_p2_t", desc: "pc_p2_d", price: null, popular: true },
+        { key: "pc_p3_t", desc: "pc_p3_d", price: null }
+      ],
+      greet: { en: "Hi NGS! I'd like to book a wash for my car.", pt: "Olá NGS! Quero agendar a lavagem do meu carro.", es: "¡Hola NGS! Quiero agendar el lavado de mi carro." }
+    },
+    premium: {
+      services: [
+        { key: "pm_p1_t", desc: "pm_p1_d", price: null },
+        { key: "pm_p2_t", desc: "pm_p2_d", price: null, popular: true },
+        { key: "pm_p3_t", desc: "pm_p3_d", price: null }
+      ],
+      greet: { en: "Hi NGS! I'd like a quote for a premium detail.", pt: "Olá NGS! Quero um orçamento de detalhamento premium.", es: "¡Hola NGS! Quiero una cotización de detallado premium." }
+    },
+    vans: {
+      services: [
+        { key: "vn_p1_t", desc: "vn_p1_d", price: null },
+        { key: "vn_p2_t", desc: "vn_p2_d", price: null, popular: true }
+      ],
+      greet: { en: "Hi NGS! I'd like a quote for my pickup/van.", pt: "Olá NGS! Quero um orçamento para minha picape/van.", es: "¡Hola NGS! Quiero una cotización para mi camioneta/van." }
+    }
+  }
 };
+
+const PAGE = document.body.dataset.page || "fleet";
+const PAGE_CFG = CONFIG.pages[PAGE] || null;
+const pageServices = () => (PAGE_CFG ? PAGE_CFG.services : CONFIG.services);
 
 const I18N = window.NGS_I18N;
 // Decisão do dono (17/11/2026): o site anima mesmo com "Reduzir movimento" ligado no aparelho.
@@ -54,22 +84,33 @@ function applyLang(lang) {
 }
 
 function greeting() {
+  if (PAGE_CFG) return PAGE_CFG.greet[state.lang];
   return { en: "Hi NGS! I'd like a quote for my fleet.", pt: "Olá NGS! Quero um orçamento para minha frota.", es: "¡Hola NGS! Quiero una cotización para mi flota." }[state.lang];
 }
 
 /* ---------- Plans & calculator ---------- */
+function priceHtml(s) {
+  if (s.price == null) return `<div class="price price-ask">${t("plan_ask")}</div>`;
+  return `<div class="price"><span class="from">${t("plan_from")}</span> $${s.price}<small>${t("plan_unit")}</small></div>`;
+}
+
 function renderPlans() {
-  $("#plansGrid").innerHTML = CONFIG.services.map((s) => `
+  const grid = $("#plansGrid");
+  if (!grid) return;
+  const services = pageServices();
+  grid.classList.toggle("two", services.length === 2);
+  grid.innerHTML = services.map((s) => `
     <article class="card plan${s.popular ? " pop" : ""}">
       ${s.popular ? `<span class="badge">${t("plan_pop")}</span>` : ""}
       <h3>${t(s.key)}</h3>
-      <div class="price"><span class="from">${t("plan_from")}</span> $${s.price}<small>${t("plan_unit")}</small></div>
+      ${priceHtml(s)}
       <p>${t(s.desc)}</p>
     </article>`).join("");
   bindCardGlow();
 }
 
 function renderServiceSeg() {
+  if (!$("#svcSeg")) return;
   $("#svcSeg").innerHTML = CONFIG.services.map((s, i) =>
     `<button data-s="${i}" class="${i === state.service ? "on" : ""}">${t(s.key)}</button>`).join("");
 }
@@ -81,6 +122,7 @@ function discountFor(vehicles) {
 
 let shownTotal = 0;
 function updateCalc() {
+  if (!$("#vIn")) return;
   const base = CONFIG.services[state.service].price;
   const disc = discountFor(state.vehicles);
   const per = Math.round(base * (1 - disc / 100));
@@ -107,6 +149,7 @@ function updateCalc() {
 }
 
 function bindCalc() {
+  if (!$("#vIn")) return;
   $("#vIn").addEventListener("input", (e) => { state.vehicles = Number(e.target.value); updateCalc(); });
   $("#svcSeg").addEventListener("click", (e) => {
     const b = e.target.closest("button"); if (!b) return;
@@ -123,6 +166,7 @@ function bindCalc() {
 /* ---------- Before / after ---------- */
 function bindBeforeAfter() {
   const box = $("#baBox");
+  if (!box) return;
   let dragging = false;
   const setPos = (clientX) => {
     const r = box.getBoundingClientRect();
@@ -144,6 +188,7 @@ function bindBeforeAfter() {
 
 function sweepBeforeAfter() {
   const box = $("#baBox");
+  if (!box) return;
   if (!window.gsap || REDUCED) { box.style.setProperty("--pos", "50%"); return; }
   const o = { p: 92 };
   gsap.to(o, { p: 50, duration: 1.4, ease: "expo.out", onUpdate: () => box.style.setProperty("--pos", `${o.p}%`) });
@@ -152,6 +197,7 @@ function sweepBeforeAfter() {
 /* ---------- Hero bubbles ---------- */
 function startBubbles() {
   const canvas = $("#bubbles");
+  if (!canvas) return;
   const ctx = canvas.getContext("2d");
   let w, h, bubbles;
   const resize = () => {
@@ -201,16 +247,32 @@ function bindMagnetic() {
   });
 }
 
+// Monta a mensagem com todos os campos do formulário (rótulo = placeholder traduzido).
 function bindLeadForm() {
-  $("#leadForm").addEventListener("submit", (e) => {
+  const form = $("#leadForm");
+  if (!form) return;
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const f = new FormData(e.target);
-    const name = String(f.get("name") || "").trim().slice(0, 80);
-    const company = String(f.get("company") || "").trim().slice(0, 80);
-    const vehicles = Math.max(1, Math.min(999, Number(f.get("vehicles")) || 1));
-    const msg = `${greeting()}\n• ${t("f_name")}: ${name}\n• ${t("f_company")}: ${company || "-"}\n• ${t("f_vehicles")}: ${vehicles}`;
-    window.open(waLink(msg), "_blank", "noopener");
+    const lines = $$("input", form).map((input) => {
+      const raw = String(input.value || "").trim();
+      const value = input.type === "number"
+        ? String(Math.max(1, Math.min(999, Number(raw) || 1)))
+        : raw.slice(0, 80) || "-";
+      return `• ${t(input.dataset.i18nPh)}: ${value}`;
+    });
+    window.open(waLink([greeting(), ...lines].join("\n")), "_blank", "noopener");
   });
+}
+
+/* ---------- Vídeos (Reels) ---------- */
+function bindReels() {
+  const videos = $$(".reel video");
+  if (!videos.length) return;
+  if (!("IntersectionObserver" in window)) { videos.forEach((v) => { v.preload = "auto"; v.play().catch(() => {}); }); return; }
+  const io = new IntersectionObserver((entries) => entries.forEach(({ target, isIntersecting }) => {
+    if (isIntersecting) { target.preload = "auto"; target.play().catch(() => {}); } else { target.pause(); }
+  }), { threshold: 0.35 });
+  videos.forEach((v) => io.observe(v));
 }
 
 /* ---------- GSAP motion ---------- */
@@ -253,17 +315,17 @@ function startMotion() {
     onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "expo.out" })
   });
 
-  ScrollTrigger.create({ trigger: "#baBox", start: "top 75%", once: true, onEnter: sweepBeforeAfter });
+  if ($("#baBox")) ScrollTrigger.create({ trigger: "#baBox", start: "top 75%", once: true, onEnter: sweepBeforeAfter });
 
   // Nav background
   ScrollTrigger.create({ start: 80, onToggle: (s) => $("#nav").classList.toggle("scrolled", s.isActive) });
 
   // Steps progress line
-  gsap.to("#stepsLine", { scaleX: 1, ease: "none", scrollTrigger: { trigger: "#steps", start: "top 75%", end: "top 30%", scrub: true } });
+  if ($("#stepsLine")) gsap.to("#stepsLine", { scaleX: 1, ease: "none", scrollTrigger: { trigger: "#steps", start: "top 75%", end: "top 30%", scrub: true } });
 
   // Fleet horizontal scroll (desktop). No celular o deslize é CSS (styles.css).
   const mm = gsap.matchMedia();
-  mm.add("(min-width: 761px)", () => {
+  if ($("#fleetTrack")) mm.add("(min-width: 761px)", () => {
     const track = $("#fleetTrack");
     const dist = () => track.scrollWidth - innerWidth + 32;
     gsap.to(track, { x: () => -dist(), ease: "none", scrollTrigger: { trigger: "#fleet", start: "top top", end: () => `+=${dist()}`, pin: ".fleet-pin", scrub: 1, invalidateOnRefresh: true } });
@@ -285,8 +347,12 @@ document.addEventListener("DOMContentLoaded", () => {
   bindCalc();
   bindBeforeAfter();
   bindLeadForm();
+  bindReels();
   bindMagnetic();
   applyLang(saved || guess);
+  // Depois dos textos: no celular, deixa a aba da página atual visível.
+  const currentTab = $(".subnav [aria-current]");
+  if (currentTab) currentTab.parentElement.scrollLeft = currentTab.offsetLeft - 16;
   if (!REDUCED) startBubbles();
   startMotion();
 });

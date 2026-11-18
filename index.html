@@ -12,9 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261117f">
+  <link rel="stylesheet" href="styles.css?v=20261118e">
 </head>
-<body>
+<body data-page="fleet">
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></symbol>
@@ -24,11 +24,7 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <a href="#top" class="brand"><img src="img/logo.webp" width="512" height="512" alt="NGS Auto Care logo" fetchpriority="high">NGS AUTO CARE</a>
-    <nav class="nav-links">
-      <a href="#why" data-i18n="nav_fleet"></a>
-      <a href="#how" data-i18n="nav_how"></a>
-      <a href="#plans" data-i18n="nav_plans"></a>
-    </nav>
+    <nav class="nav-links" aria-label="Services"><a href="index.html" aria-current="page" data-i18n="nav_p_fleet"></a><a href="personal.html" data-i18n="nav_p_personal"></a><a href="premium.html" data-i18n="nav_p_premium"></a><a href="vans.html" data-i18n="nav_p_vans"></a></nav>
     <div class="nav-right">
       <div class="lang" role="group" aria-label="Language">
         <button data-lang="en" class="on">EN</button><button data-lang="pt">PT</button><button data-lang="es">ES</button>
@@ -36,6 +32,7 @@
       <a href="#calc" class="btn btn-primary btn-sm magnetic" data-i18n="nav_quote"></a>
     </div>
   </div>
+  <nav class="subnav" aria-label="Services"><a href="index.html" aria-current="page" data-i18n="nav_p_fleet"></a><a href="personal.html" data-i18n="nav_p_personal"></a><a href="premium.html" data-i18n="nav_p_premium"></a><a href="vans.html" data-i18n="nav_p_vans"></a></nav>
 </header>
 
 <main id="top">
@@ -115,6 +112,31 @@
         <figure class="fleet-item"><img src="img/p27.jpg" alt="Florida Fun van ready for the morning" loading="lazy"><figcaption>Ready by morning</figcaption></figure>
         <figure class="fleet-item"><img src="img/p25.jpg" alt="Van cabin interior cleaned" loading="lazy"><figcaption>Cabin interior</figcaption></figure>
         <figure class="fleet-item"><img src="img/p10.jpg" alt="Cargo area cleaned" loading="lazy"><figcaption>Cargo area · steam clean</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="trucks" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="gal_kicker"></p>
+      <h2 class="h2 reveal" data-i18n="ft_gal_title"></h2>
+      <div class="photo-grid two">
+        <figure class="reveal"><img src="img/ft01.jpg" alt="International semi truck after wash" loading="lazy" decoding="async"></figure>
+        <figure class="reveal"><img src="img/ft02.jpg" alt="International semi truck cab clean" loading="lazy" decoding="async"></figure>
+        <figure class="reveal"><img src="img/ft03.jpg" alt="Volvo semi truck after wash" loading="lazy" decoding="async"></figure>
+        <figure class="reveal"><img src="img/ft04.jpg" alt="International day cab after wash" loading="lazy" decoding="async"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker reveal" data-i18n="vid_kicker"></p>
+      <h2 class="h2 reveal" data-i18n="vid_title"></h2>
+      <div class="reels">
+        <figure class="reel reveal"><video src="video/work-foam-van.mp4" poster="video/work-foam-van.jpg" muted loop playsinline preload="none" aria-label="work-foam-van"></video><figcaption data-i18n="vid_c1"></figcaption></figure>
+        <figure class="reel reveal"><video src="video/work-porsche.mp4" poster="video/work-porsche.jpg" muted loop playsinline preload="none" aria-label="work-porsche"></video><figcaption data-i18n="vid_c2"></figcaption></figure>
+        <figure class="reel reveal"><video src="video/work-frontier.mp4" poster="video/work-frontier.jpg" muted loop playsinline preload="none" aria-label="work-frontier"></video><figcaption data-i18n="vid_c3"></figcaption></figure>
       </div>
     </div>
   </section>
@@ -227,7 +249,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="i18n.js?v=20261117f"></script>
-<script src="app.js?v=20261117f"></script>
+<script src="i18n.js?v=20261118e"></script>
+<script src="i18n-pages.js?v=20261118e"></script>
+<script src="app.js?v=20261118e"></script>
 </body>
 </html>
