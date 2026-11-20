@@ -1,6 +1,6 @@
 // NGS Auto Care — fleet site. Edite CONFIG para trocar telefone e preços.
 const CONFIG = {
-  whatsapp: "13213177254",
+  whatsapp: "14079860502",
   // Preços por lavagem/veículo. Exterior $45 e Completa $85 = enviados pela NGS em 17/11/2026; Premium ATTAC $120 enviado pela NGS em 20/11/2026.
   services: [
     { key: "plan1_t", desc: "plan1_d", price: 45 },
