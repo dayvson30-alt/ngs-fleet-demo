@@ -1,11 +1,11 @@
 // NGS Auto Care — fleet site. Edite CONFIG para trocar telefone e preços.
 const CONFIG = {
   whatsapp: "13213177254",
-  // Preços por lavagem/veículo. Exterior $45 e Completa $85 = enviados pela NGS em 17/11/2026; Premium $180 ainda provisório.
+  // Preços por lavagem/veículo. Exterior $45 e Completa $85 = enviados pela NGS em 17/11/2026; Premium ATTAC $120 enviado pela NGS em 20/11/2026.
   services: [
     { key: "plan1_t", desc: "plan1_d", price: 45 },
     { key: "plan2_t", desc: "plan2_d", price: 85, popular: true },
-    { key: "plan3_t", desc: "plan3_d", price: 180 }
+    { key: "plan3_t", desc: "plan3_d", price: 120 }
   ],
   // Desconto por volume: [mínimo de veículos, %]
   volumeDiscounts: [[50, 20], [25, 15], [10, 10], [5, 5]],
@@ -13,8 +13,8 @@ const CONFIG = {
   pages: {
     personal: {
       services: [
-        { key: "pc_p1_t", desc: "pc_p1_d", price: null },
-        { key: "pc_p2_t", desc: "pc_p2_d", price: null, popular: true },
+        { key: "pc_p1_t", desc: "pc_p1_d", price: 55 },
+        { key: "pc_p2_t", desc: "pc_p2_d", price: 75, popular: true },
         { key: "pc_p3_t", desc: "pc_p3_d", price: null }
       ],
       greet: { en: "Hi NGS! I'd like to book a wash for my car.", pt: "Olá NGS! Quero agendar a lavagem do meu carro.", es: "¡Hola NGS! Quiero agendar el lavado de mi carro." }
@@ -29,8 +29,8 @@ const CONFIG = {
     },
     vans: {
       services: [
-        { key: "vn_p1_t", desc: "vn_p1_d", price: null },
-        { key: "vn_p2_t", desc: "vn_p2_d", price: null, popular: true }
+        { key: "vn_p1_t", desc: "vn_p1_d", price: 65 },
+        { key: "vn_p2_t", desc: "vn_p2_d", price: 85, popular: true }
       ],
       greet: { en: "Hi NGS! I'd like a quote for my pickup/van.", pt: "Olá NGS! Quero um orçamento para minha picape/van.", es: "¡Hola NGS! Quiero una cotización para mi camioneta/van." }
     }
